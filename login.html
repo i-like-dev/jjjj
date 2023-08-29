@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://s10.aconvert.com/convert/p3r68-cdx67/a0v2m-lxhke-001.ico" rel="shortcut icon"/>
+<title>登入</title>
+<link rel="stylesheet" href="style.css" />
+<h1><a class="aa" href="HOME.html">活動服務網站</a></h1>
+<nav class="dd">
+    <ul>
+        <li><a style="border-left: 1px solid white;" href="HOME.html">首頁</a></li>
+        <li><a href="p2.html">指引</a></li>
+        <li><a href="login.html">登入</a></li>
+    </ul>
+</nav>
+
+
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+background-color: #f5f5f5;
+margin: 0;
+padding: 0;
+}
+.container {
+max-width: 400px;
+margin: 0 auto;
+padding: 20px;
+background-color: #fff;
+border-radius: 5px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+margin-top: 0;
+}
+label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+}
+input {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 3px;
+}
+button {
+background-color: #007bff;
+color: #fff;
+padding: 10px 20px;
+border: none;
+border-radius: 3px;
+cursor: pointer
+}
+button:hover {
+background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>登入</h1>
+
+<form id="loginForm">
+<label for="username">帳號:</label>
+<input type="text" id="username" name="username"><br><br>
+<label for="password">密碼:</label>
+<input type="password" id="password" name="password"><br><br>
+<img id="captchaImage" src="" alt="圖片驗證">
+<input type="text" id="captchaInput" placeholder="輸入圖片中的文字"><br><br>
+<button type="button" onclick="login()">登入</button>
+</form>
+</div>
+
+<script>
+function generateRandomCaptcha() {
+var captcha = "";
+var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+for (var i = 0; i < 6; i++) {
+captcha += characters.charAt(Math.floor(Math.random() * characters.length));
+}
+return captcha;
+}
+
+function updateCaptchaImage() {
+var captchaImage = document.getElementById("captchaImage");
+var captchaInput = document.getElementById("captchaInput");
+var randomCaptcha = generateRandomCaptcha();
+
+captchaInput.value = "";
+captchaImage.src = "https://via.placeholder.com/150?text=" + randomCaptcha;
+
+currentCaptcha = randomCaptcha;
+}
+
+function login() {
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+var captchaInput = document.getElementById("captchaInput").value;
+
+var userMapping = {
+"admin12345tw": { password: "admin12345tw", redirect: "https://www.walking-cat.com/首頁" },
+"1f": { password: "1f", redirect: "p3.html" },
+"2f": { password: "2f", redirect: "94.html" },
+};
+
+var user = userMapping[username];
+
+if (user && password === user.password && captchaInput === currentCaptcha) {
+window.location.href = user.redirect;
+} else {
+alert("帳號、密碼或圖片驗證錯誤");
+updateCaptchaImage();
+}
+}
+
+var currentCaptcha;
+updateCaptchaImage();
+</script>
+</body>
+</html>
+<body>
+    <section>
+      <!-- stuff -->
+      <footer>
+        <!-- A footer for the section. -->
+      </footer>
+    </section>
+  
+    <footer>
+      <p>© 2023 Walking Cat</p>
+      <!-- A footer for the page. -->
+    </footer>
+  </body>
